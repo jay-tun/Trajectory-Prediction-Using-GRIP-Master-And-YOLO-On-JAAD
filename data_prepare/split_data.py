@@ -3,14 +3,14 @@ import os
 import shutil
 
 
-data_folder = '/home/jnomad/Documents/Semester 6/Thesis/GRIP-master/JAAD_clips/'
+data_folder = "/home/jnomad/Documents/Semester 6/Thesis/GRIP-master/data_folder/"
 
 video_clips = os.listdir(data_folder)
 
-train_clips, test_clips = train_test_split(video_clips, test_size=0.33, random_state=47)
+train_clips, test_clips = train_test_split(video_clips, test_size=0.30)
 
-train_folder = '/home/jnomad/Documents/Semester 6/Thesis/GRIP-master/train_foler'
-test_folder = '/home/jnomad/Documents/Semester 6/Thesis/GRIP-master/test_folder'
+train_folder = "/home/jnomad/Documents/Semester 6/Thesis/GRIP-master/data_folder/prediction_train/"
+test_folder = '/home/jnomad/Documents/Semester 6/Thesis/GRIP-master/data_folder/prediction_test/'
 
 
 #create the train and test folders if they don't already exist
