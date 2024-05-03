@@ -1,3 +1,8 @@
+"""This file is to extract relevant data from 
+JAAD dataset, so that the format is in Apolloscape
+dataset."""
+
+
 import os
 import xml.etree.ElementTree as ET
 import math
