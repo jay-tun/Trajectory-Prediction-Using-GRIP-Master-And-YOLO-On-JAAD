@@ -1,3 +1,7 @@
+"""This script splits your dataset into training data
+and testing data. You may arrange the test_size according
+to your needs."""
+
 from sklearn.model_selection import train_test_split
 import os
 import shutil
