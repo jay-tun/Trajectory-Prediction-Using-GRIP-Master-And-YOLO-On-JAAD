@@ -1,0 +1,103 @@
+ %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                    APPENDIX TEMPLATE                                    %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Use these after the \appendix command at the end of report.tex
+% Appendices work similar to a chapter and are used to provide supplementary information that typically do not contribute to the final page count of a report.
+
+\chapter{Appendix A: Code Listings and Scripts} % Main appendix title
+
+\label{AppendixA} % for referencing this appendix elsewhere, use \ref{AppendixA}
+
+% This is for the header on each page if in use - input a shortened title due to constrictions.
+% \lhead{Appendix A. \emph{Short App. Title Here}}
+
+%Write your Appendix content here. Sections and subsections can be used as well.
+%\section{First Appendix Section}
+%\subsection{First Appendix Subsection}
+%\subsubsection{First Appendix Subsubsection}
+%Appendices will show up in the ToC numbered as letters. This is of course totally customizable, please refer to the CTAN documentation (\url{https://ctan.org/pkg/appendix?lang=en}) for further clarity on the same.
+
+\section{CUDA Adjustments for Colab Environment}
+
+\tab The original GRIP++ code was designed for a local environment with CUDA support. When running the code on Google Colab, adjustments were made to ensure compatibility with Colab’s environment.
+
+\begin{minted}[fontsize=\small]{python}
+# Original code to specify device
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Modified code for Colab compatibility
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model.to(device)
+
+# In some parts of the code, move tensors to device as needed
+tensor = tensor.to(device)
+\end{minted}
+
+The main change involves ensuring that all tensors and models are explicitly moved to the GPU (CUDA) when available, which is crucial in a cloud-based environment like \verb|Google Colab|.
+
+\section{Running the GRIP++ Code}
+
+Adjust the \verb|main.py| code to handle any necessary changes for training and testing on your dataset. Example modifications include:
+
+\begin{itemize}
+    \item Adjusting the dataset paths.
+    \item Modifying the train and test split to match the structure of the JAAD dataset.
+    \item Configuring the epochs and other hyperparameters.
+\end{itemize}
+
+\begin{minted}[fontsize=\small]{python}
+    # Load the dataset (adjusted for JAAD data)
+    train_dataset = load_dataset('/path_to_train_data')
+    test_dataset = load_dataset('/path_to_test_data')
+    
+    # Set epochs and learning rates
+    num_epochs = 50  # Adjust as needed
+    learning_rate = 0.001
+    
+    # Train and test the model
+    train(model, train_dataset, num_epochs, learning_rate)
+    test(model, test_dataset)
+
+\end{minted}
+
+\subsection{Training and Testing}
+
+Train the model by running the modified main.py. During this phase, you can adjust the number of epochs, batch size, and other hyperparameters as necessary.
+
+\begin{verbatim}
+    !python main.py --train --epochs 50
+\end{verbatim}
+
+Once training is complete, select the model that performs the best (based on validation metrics) and run it on the test data.
+
+\subsection{Visualization}
+
+After obtaining the predictions, visualize them by overlaying the predicted trajectories on the test video using the visualization.py script. You can also add additional segmentation layers (e.g., for driveable areas) using models like YOLO and DeepLabV3+.
+
+\begin{small}
+    
+\begin{verbatim}
+    !python visualize.py --video_path /path_to_test_video.mp4 --predictions /path_to_predictions.txt
+\end{verbatim}
+\end{small}
+
+\section{YOLO and DeepLabV3+ for Visualization}
+
+To add object detection (using YOLO) and semantic segmentation (using DeepLabV3+) to the prediction visualizations:
+
+\begin{minted}[fontsize=\small]{python}
+# Load pre-trained YOLO and DeepLabV3+ models
+yolo_model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
+deeplab_model = models.segmentation.deeplabv3_resnet101(pretrained=True).eval()
+
+# Apply object detection and segmentation to each frame
+for frame in video_frames:
+    results = yolo_model(frame)
+    masks = deeplab_model(frame)['out']
+    
+    # Overlay predictions on the video frame
+    frame_with_predictions = overlay_predictions(frame, results, masks)
+    output_video.write(frame_with_predictions)
+
+\end{minted}

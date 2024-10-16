@@ -1,0 +1,23 @@
+\chapter{Future Work and Conclusion}
+
+\section{Future Work}
+
+\tab Building on the findings and limitations identified in this research, several areas for future work emerge. These potential directions aim to enhance the practicality, performance, and robustness of graph-based trajectory prediction models like GRIP++, particularly in the context of real-world autonomous driving applications.
+
+\textbf{Incorporation of Additional Object Types and Environmental Factors}: The current implementation of GRIP++ using the JAAD dataset focused primarily on pedestrian trajectory prediction. Expanding the model to accurately predict the trajectories of other objects, such as vehicles, cyclists, and motorcyclists, could improve its applicability in more complex traffic scenarios. Additionally, incorporating environmental factors like road conditions, weather, and traffic signals could enhance the model's decision-making capabilities.
+
+\textbf{Cross-dataset Generalization:}The current implementation was tested on the JAAD dataset, which is focused on pedestrian behavior in specific urban scenarios. Future research could evaluate the generalizability of GRIP++ across different datasets, such as the KITTI \cite{Geiger2013IJRR} or Waymo datasets \cite{sun2020scalability}, which contain a broader range of traffic agents and driving conditions. Improving the model's ability to generalize across datasets would be a crucial step toward its deployment in real-world systems.
+
+\textbf{Collaboration with Industry for Real-world Testing:} Finally, collaborating with industry partners in the automotive sector could provide opportunities to test the model in real-world driving conditions. This collaboration could offer insights into the practical challenges of deploying such models in autonomous vehicles and help refine the model to meet the stringent safety and performance standards required in the industry.
+
+\textbf{Pedestrian Analysis:} Although not done during this research, one area of improvement could be to look into if a pedestrian is going to enter a segmented area which is classified as driving lane and pose a threat to themselves. This is a question that needs to be analyzed carefully for safety of autonomous vehicles. 
+
+\section{Conclusion}
+
+\tab The research undertaken in this project aimed to replicate and evaluate the performance of the GRIP++ algorithm using a different dataset, JAAD, to test the model's effectiveness in predicting pedestrian trajectories. The study successfully demonstrated the feasibility of adapting the GRIP++ algorithm to a new dataset by transforming the JAAD annotations into the required format. Despite the challenges of dataset transformation, preprocessing, and handling variations in object types, the model achieved reasonable performance in predicting pedestrian movements.
+
+\tab One of the key achievements of this project was the ability to visualize the predicted trajectories alongside actual movements in real-world video footage. This provided an intuitive understanding of the model's strengths and limitations. The results indicate that the graph-based approach of GRIP++ effectively captures the interaction dynamics between different traffic agents, leading to accurate predictions in most cases.
+
+\tab However, several limitations were identified during the course of this research. The reliance on high-performance GPUs for training and testing the model is a notable constraint. In practical applications, such as in autonomous vehicles, the computational power available is often limited to embedded systems, which may not be able to run complex models like GRIP++ efficiently. Moreover, the analysis highlighted the inherent uncertainties in trajectory prediction models. Even with a high prediction accuracy, there remains a small chance of incorrect predictions, which could have significant consequences in safety-critical applications like autonomous driving. These findings underscore the importance of ongoing research to improve the reliability and robustness of trajectory prediction models.
+
+\tab While the GRIP++ algorithm shows promise in enhancing the accuracy of pedestrian trajectory predictions, further work is needed to address the challenges of deploying these models in real-world systems. 

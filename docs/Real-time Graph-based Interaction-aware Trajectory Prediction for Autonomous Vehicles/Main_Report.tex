@@ -1,0 +1,235 @@
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%	                  PREAMBLE (PACKAGES AND DOCUMENT CONFIGURATION)                      %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Set the font size (in pt) and paper size (letterpaper, a4paper, etc)
+\documentclass[12pt,a4paper]{report}
+
+\oddsidemargin 0.5cm \evensidemargin 0.5cm
+\marginparwidth 40pt \marginparsep 10pt
+\topmargin 0pt \headsep 40pt
+\textheight 635pt \textwidth 450pt
+
+\usepackage{amsthm,amssymb,mathrsfs,setspace,booktabs}
+\usepackage{mathtools,amsmath,nccmath}
+\usepackage{pdfpages}
+
+
+
+\usepackage[a4paper,top=0.75in,bottom=0.75in,left=0.75in,right=0.75in]{geometry}
+\renewcommand{\baselinestretch}{1.15}
+\usepackage{times}
+\usepackage{titlesec}
+\setlength{\parskip}{0.5em plus 0.1em minus 0.1em}
+\setlength{\textheight}{\dimexpr\paperheight-2in}
+\titlespacing*{\chapter}{0pt}{-20pt}{10pt}
+\titlespacing*{\section}{0pt}{*1.0}{*0.5}
+\titlespacing*{\subsection}{0pt}{*0.5}{*0.25}
+
+
+
+
+% UNCOMMENT REQUIRED PACKAGES. 
+% CAREFULLY REMOVE UNNECESSARY PACKAGES TO DECREASE COMPILE TIME.
+% READ ALL ASSOCIATED PACKAGE HELP FILES BEFORE USE.
+
+\usepackage{pstricks} % PSTricks offers an extensive collection of quick and easy macros for generating PostScript including macros for colour, graphics, pie charts, rotation, trees and overlays. (https://ctan.org/pkg/pstricks-base?lang=en)
+
+\usepackage{tikz} % Used in Images/Figures/3D_Cone.tex, disable if not needed
+% tikz package for drawing graphs and diagrams [XY-pic is now outdated]
+% (https://ctan.org/pkg/tikz?lang=en)
+
+%\usepackage{tikz-cd} % Commutative Diagrams with Tikz, primarily for linear algebra.
+% (https://ctan.org/pkg/tikz-cd?lang=en)
+
+%\usepackage{pgfplots} % pgfplots with tikz package is used to portray detailed 2D and 3D function plots and graph data with a high degree of customization. (https://www.overleaf.com/learn/latex/Pgfplots_package)
+% (https://ctan.org/pkg/pgfplots?lang=en)
+
+%\usepackage{footmisc} % footmisc package for more control over typesetting footnotes.
+% (https://ctan.org/pkg/footmisc?lang=en)
+
+\usepackage[%
+    colorlinks=true,
+    pdfborder={0 0 0},
+    linkcolor=red    
+]{hyperref} % hyperref package for creating reliable hyperlinks and referral links.
+% (https://ctan.org/pkg/hypperref?lang=en)
+
+\usepackage{appendix} % appendix package for appendix-related formatting.
+% (https://ctan.org/pkg/appendix?lang=en)
+
+%\usepackage{listofsymbols} % listofsymbols package for establishing a legend for any symbols used.
+% (https://ctan.org/pkg/listofsymbols?lang=en)
+
+\usepackage{caption} % caption package for better control over figure and table captions.
+% (https://ctan.org/pkg/caption?lang=en)
+
+%\usepackage{booktabs} % The booktabs package allows better control over tables including ruling, width, etc. (https://ctan.org/pkg/booktabs?lang=en) 
+
+\usepackage[style=numeric,sorting=nyt]{biblatex}
+
+
+\usepackage{fancyhdr} % fancyhdr package gives better control over headers and footers.
+% (https://www.overleaf.com/learn/latex/Headers_and_footers)
+%\pagestyle{fancy} % Enable for quick header and footer throughout your document.
+
+\usepackage{multicol} % multicol package allows the use of columns in your documents.
+% (https://ctan.org/pkg/multicol?lang=en)
+
+\usepackage{geometry} % geometry package for absolute control over the dimensions of the usable space on a page.
+% (https://ctan.org/pkg/geometry?lang=en)
+
+\usepackage{xcolor} % xcolor package for better control over colours.
+% (https://ctan.org/pkg/xcolor?lang=en)
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage{graphicx} % Provides additional control over the \includegraphics command
+% (https://ctan.org/pkg/graphicx)
+
+\usepackage[nottoc]{tocbibind} % Adds LoF and LoT to ToC
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+
+\setlength{\parskip}{1em plus 0.25em minus 0.25em}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{notation}[theorem]{Notation}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\renewcommand{\baselinestretch}{1.5}
+
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                          Abbreviations, Constants and Symbols                           %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Uncomment lines for enabling the use of abbreviations in 07_Abbrev,Const,Symbols.tex
+\usepackage{longtable}
+\newcommand\listsymbolname{Abbreviations}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\newcommand\listofsymbols[2]{
+\btypeout{\listsymbolname}
+\addtotoc{\listsymbolname}
+    \chapter*{\listsymbolname
+      \@mkboth{
+          \MakeUppercase\listsymbolname}{\MakeUppercase\listsymbolname}}
+\begin{longtable}[c]{#1}#2\end{longtable}\par
+    \cleardoublepage
+}
+
+% Uncomment lines for enabling the use of constants in 07_Abbrev,Const,Symbols.tex
+%\newcommand\listconstants{Physical Constants}
+%\newcommand\listofconstants[2]{
+%\btypeout{\listconstants}
+%\addtotoc{\listconstants}
+%    \chapter*{\listconstants
+%      \@mkboth{
+%          \MakeUppercase\listconstants}{\MakeUppercase\listconstants}}
+%\begin{longtable}[c]{#1}#2\end{longtable}\par
+%    \cleardoublepage
+%}
+
+% Uncomment lines for enabling the use of symbols in 07_Abbrev,Const,Symbols.tex
+%\newcommand\listnomenclature{Symbols}
+%\newcommand\listofnomenclature[2]{
+%\btypeout{\listnomenclature}
+%\addtotoc{\listnomenclature}
+%    \chapter*{\listnomenclature
+%      \@mkboth{
+%          \MakeUppercase\listnomenclature}{\MakeUppercase\listnomenclature}}
+%\begin{longtable}[c]{#1}#2\end{longtable}\par
+%    \cleardoublepage
+%}
+
+% Uncomment for some standard notations in math as required
+% \displaystyle or \ds lets you switch back the display style to default, during,
+% say, a cascading fraction 
+
+%\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+%\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%\DeclarePairedDelimiter\norm{\left\lVert}{\right\rVert}
+%\newcommand{\reals}{\mathbb R}
+%\newcommand{\complex}{\mathbb C}
+%\newcommand{\rational}{\mathbb Q}
+%\newcommand{\int}{\mathbb Z}
+%\newcommand{\nat}{\mathbb N}
+%\newcommand{\jacobian}{\mathcal J}
+%\newcommand{\bigzero}{\mbox{\normalfont\Large\bfseries 0}}
+%\newcommand{\ds}{\displaystyle}
+%\newcommand{\Ll}{\mathbb L}
+%\newcommand{\la}{\lambda}
+%\newcommand{\cof}{\textup{cof }}
+%\newcommand{\dsum}{\displaystyle\sum}
+%\newcommand{\1}{\mathbf 1}
+
+\usepackage{minted}
+\usepackage{titlesec}
+\titleformat{\chapter}[hang]
+{\normalfont\LARGE\bfseries}{\thechapter.}{1em}{\LARGE}
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt}
+
+\addbibresource{ref.bib}
+
+\begin{document}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+% CUSTOM INPUT FIELDS ARE MARKED WITH [] IN THE INTRO SECTIONS.
+% REWRITE INPUTS ACCORDING TO CAPITALIZATION WITHIN BRACKETS (First Letter Capital/ALL UPPERCASE/all small letters).
+% GO THROUGH EACH INTRO PAGE AND UPDATE ALL OF YOUR PERSONAL INFORMATION ACCORDINGLY.
+% READ ALL UNCOMMENTED LINES CAREFULLY.
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+\input{00_Intro_Pages/01_TitlePage}
+\input{00_Intro_Pages/02_Declaration}
+
+% Switch from 03a_Certificate to 03b_Certificate for a fancier format.
+%\input{00_Intro_Pages/04_Acknowledgements}
+\input{00_Intro_Pages/05_Abstract}
+\input{00_Intro_Pages/06_ToC,LoF,LoT}
+%\input{00_Intro_Pages/07_Abbrev,Const,Symbols}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Main chapters start here ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+\input{Chapters/01_Introduction}
+\input{Chapters/02_Chapter2}
+\input{Chapters/03_Chapter3}
+\input{Chapters/04_Conclusion}
+
+% You can either break down your chapter(s) into multiple TeX files or keep it all in one file
+% and quickly move between sections and subsections using 'the File Outline' box at the bottom
+% left of the screen.
+
+% Disable the next few lines if you do not require an appendix
+\appendix
+\appendixpage
+\addappheadtotoc
+\input{Appendices/A_AppA.tex}
+
+% This sets in the bibliography. Refer to ref.bib for some convenient tips on
+% automating the citation generation process
+\nocite{*} % Without this, only cited materials are displayed in the bibliography.
+\printbibliography[heading=bibintoc] % adds bibliography to ToC
+
+\end{document}
