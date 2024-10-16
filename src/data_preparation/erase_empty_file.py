@@ -1,8 +1,3 @@
-"""This script removes files which does not contain 
-any content in them. It is written to clean the dataset 
-which did not include anything and was causing error in 
-processing data."""
-
 import os
 
 def delete_empty_files(directory):
@@ -17,6 +12,6 @@ def delete_empty_files(directory):
             print(f"Deleted empty file: {filepath}")
 
 # Example usage:
-directory_path = "/home/jnomad/Documents/Semester 6/Thesis/GRIP-master/tess/train/"
+directory_path = "/home/jnomad/Documents/Semester 6/Thesis/GRIP-master/data_folder/data_set/"
 delete_empty_files(directory_path)
 
