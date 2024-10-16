@@ -77,3 +77,9 @@ After running the models, you will find the output in the `results/` folder, inc
 
 If you would like to contribute to this project, please fork the repository and submit a pull request with your improvements or features.
 
+## Original Code Links
+
+For the foundational components of this project, you can refer to the original code repositories:
+
+- [GRIP++](https://github.com/xincoder/GRIP) - This repository contains the original implementation of the GRIP++ framework.
+- [JAAD Dataset](https://github.com/ykotseruba/JAAD) - This repository provides access to the JAAD dataset used for training and evaluating the models.
