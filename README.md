@@ -1,98 +1,79 @@
 
 # Real-time Graph-based Interaction-aware Trajectory Prediction for Autonomous Vehicles
 
-This repository contains the code, data, and results for my thesis project, **Real-time Graph-based Interaction-aware Trajectory Prediction for Autonomous Vehicles**. The project involves data preparation, trajectory prediction using a modified version of GRIP++, visualization of results, and error calculation.
-
-## Table of Contents
-- [Project Overview](#project-overview)
-- [Folder Structure](#folder-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Results](#results)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Project Overview
-The goal of this project is to predict the future trajectories of agents (e.g., vehicles, pedestrians) in real-time using a graph-based interaction-aware model. The project uses the GRIP++ framework with custom modifications for improved accuracy and efficiency. Additionally, visualization scripts are included for better understanding of the predictions, along with error calculation to evaluate performance.
 
-## Folder Structure
+This repository contains the implementation and results of the thesis titled "Real-time Graph-based Interaction-aware Trajectory Prediction for Autonomous Vehicles." The project focuses on developing a system that predicts vehicle trajectories in real time using interaction-aware models based on graph representations.
+
+## Project Structure
+
+The repository is organized as follows:
+
 ```
-/
-├── data_preparation/            # Scripts for preparing the dataset
-│   └── data_loader.py           # Data loading and processing
-│
-├── grip_plus_plus/              # Modified GRIP++ framework
-│   ├── original_code/           # (Optional) Original GRIP++ code
-│   ├── modified_code.py         # Code with my parameter adjustments
-│   └── parameters_config.py     # Configuration for the custom parameters
-│
-├── visualization/               # Scripts for visualizing the results
-│   ├── segmentation.py          # Segmentation script
-│   ├── plot_results.py          # Script to plot results
-│   └── error_calculation.py     # Script for calculating prediction errors
-│
-├── results/                     # Output files from experiments
-│   ├── images/                  # Generated result images
-│   └── videos/                  # Generated result videos (Note: large files)
-│       ├── predictions.mp4      # Example video of prediction overlays
-│       └── analysis.mp4         # Analysis video
-│
-└── README.md                    # Project documentation (this file)
+├── data_folder/
+│   ├── first_iteration/
+│   │   ├── prediction_test/
+│   │   └── prediction_train/
+│   └── second_iteration/
+│       ├── prediction_test/
+│       └── prediction_train/
+├── data_preparation/
+│   ├── erase_empty_file.py
+│   ├── extract_data.py
+│   ├── randomize_data.py
+│   └── split_data.py
+├── docs/
+│   ├── thesis.pdf
+│   └── extracted_latex/
+├── grip_plus_plus/
+│   └── modified_GRIP++/
+├── metrics/
+│   ├── calculate_error_metrics.py
+│   └── identify_epoch.py
+├── results/
+│   ├── numerical_results/
+│   └── videos/
+├── visualize/
+│   ├── overlay_trajectory.py
+│   └── segmentation_and_yolo.py
+└── requirements.txt
 ```
 
 ## Installation
-To run the code in this repository, you need to have Python 3 installed along with the necessary dependencies.
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/jay-tun/Trajectory-Prediction-Using-GRIP--And-YOLO-O.git
-   ```
+To set up the project environment, you will need Python 3 and pip. You can create a virtual environment (recommended) and install the required packages using the following commands:
 
-2. Navigate to the project directory:
-   ```bash
-   cd Trajectory-Prediction-Using-GRIP--And-YOLO-O
-   ```
+```bash
+# Create a virtual environment (optional)
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
 
-3. Install dependencies (you can set up a virtual environment first if desired):
-   ```bash
-   pip install -r requirements.txt
-   ```
+# Install the required packages
+pip install -r requirements.txt
+```
 
 ## Usage
+
 ### Data Preparation
-Use the scripts in the `data_preparation/` folder to process and load the dataset:
+
+Before running the models, ensure that the data is correctly prepared. You can use the scripts in the `data_preparation/` folder to clean and preprocess your data.
+
+### Running the Model
+
+1. Navigate to the folder containing the model scripts.
+2. Run the desired script to start the training or testing process.
+
+For example, to overlay trajectories, you can run:
+
 ```bash
-python data_preparation/data_loader.py
+python visualize/overlay_trajectory.py
 ```
 
-### Running GRIP++ with Modifications
-Run the modified GRIP++ model with your parameter adjustments:
-```bash
-python grip_plus_plus/modified_code.py
-```
+### Results
 
-### Visualizing Results
-To visualize the segmentation and prediction results:
-```bash
-python visualization/segmentation.py
-python visualization/plot_results.py
-```
-
-### Error Calculation
-To calculate prediction errors, run:
-```bash
-python visualization/error_calculation.py
-```
-
-## Results
-Example result images and videos are located in the `results/` folder. These include:
-- **Images**: Overlays of predictions on the original scenes.
-- **Videos**: Predictions visualized over time.
-  
-Larger video files can be found in [Google Drive](#) or [GitHub Releases](#) (add links to where you've hosted the videos externally if necessary).
+After running the models, you will find the output in the `results/` folder, including numerical results and generated videos.
 
 ## Contributing
-If you want to contribute to this project, feel free to open an issue or submit a pull request. Please make sure to follow the contributing guidelines in `CONTRIBUTING.md` (if applicable).
 
-## License
-This project is licensed under the [MIT License](LICENSE).
+If you would like to contribute to this project, please fork the repository and submit a pull request with your improvements or features.
+
